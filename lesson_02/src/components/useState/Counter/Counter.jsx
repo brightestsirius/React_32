@@ -2,27 +2,35 @@ import { useState, useRef } from "react";
 import "./style.sass";
 
 export default function Counter() {
+  console.log(`🔄 in Counter component`);
+
   const [counter, setCounter] = useState(0);
-  const [color, setColor] = useState(`#000000`);
+  const [color, setColor] = useState(`#526374`);
 
   const [isEncreasing, setIsEncreasing] = useState(false);
-
-  const colorInputRef = useRef();
   const intervalId = useRef();
 
-  const decrement = () => {
+  const inputColorRef = useRef();
+
+  const dec = () => {
     setCounter((prevState) => prevState - 1);
   };
 
-  const increment = () => {
+  const inc = () => {
     setCounter((prevState) => prevState + 1);
   };
 
+  const addValue = () => {
+    const value = +prompt(`Enter value`, 10);
+    setCounter((prevState) => prevState + value);
+  };
+
   const startEncreasing = () => {
-    setIsEncreasing(true);
     intervalId.current = setInterval(() => {
       setCounter((prevState) => prevState + 1);
     }, 1000);
+
+    setIsEncreasing(true);
   };
 
   const stopEncreasing = () => {
@@ -31,22 +39,23 @@ export default function Counter() {
   };
 
   const handleSetColor = () => {
-    setColor(colorInputRef.current.value);
+    setColor(inputColorRef.current.value);
   };
 
   return (
     <div className="counter">
-      <button onClick={decrement}>-</button>
+      <button onClick={dec}>-</button>
       <span style={{ color }}>{counter}</span>
-      <button onClick={increment}>+</button>
+      <button onClick={inc}>+</button>
       <input
         type="color"
         value={color}
         onChange={handleSetColor}
-        ref={colorInputRef}
+        ref={inputColorRef}
       />
+      <button onClick={addValue}>Add value</button>
       <button onClick={isEncreasing ? stopEncreasing : startEncreasing}>
-        {isEncreasing ? `Stop` : `Start`} encreasing
+        {isEncreasing ? `Stop` : `Start`} encreaing
       </button>
     </div>
   );

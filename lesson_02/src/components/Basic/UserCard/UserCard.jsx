@@ -1,15 +1,15 @@
 import React from "react";
 
-export default function UserCard({ user = {} }) {
-  return Object.keys(user).length ? (
+export default function UserCard({user={}}) {
+  return (
     <ul>
       {Object.entries(user)
         .filter(([key]) => key !== `id`)
-        .map(([key, item]) => (
+        .map(([key, value]) => (
           <li key={key}>
-            {key}: {Array.isArray(item) ? item.join(`, `) : String(item)}
+            {key}: {Array.isArray(value) ? value.join(`, `) : String(value)}
           </li>
         ))}
     </ul>
-  ) : null;
+  );
 }

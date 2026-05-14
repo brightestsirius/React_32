@@ -1,7 +1,5 @@
-export default function ListItem({ item, children }) {
-  return (
-    <li>
-      {item} {children}
-    </li>
-  );
+import React from "react";
+
+export default function ListItem({ children }) {
+  return <li>{children}</li>;
 }

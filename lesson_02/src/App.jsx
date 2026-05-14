@@ -1,10 +1,15 @@
-import React from "react";
-import Counter from "./components/useState/Counter/Counter";
+import { useState } from "react";
+import List from "./components/useEffect/List/List";
 
 export default function App() {
+  const [isListComponent, setIsListComponent] = useState(true);
+
   return (
     <>
-      <Counter />
+      <button onClick={() => setIsListComponent((prevState) => !prevState)}>
+        {!isListComponent ? `Show` : `Remove`} List Component
+      </button>
+      {isListComponent && <List removeComponent={setIsListComponent} />}
     </>
   );
 }
