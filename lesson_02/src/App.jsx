@@ -1,10 +1,10 @@
 import React from "react";
-import Basic from "./components/Basic/Basic";
+import Counter from "./components/useState/Counter/Counter";
 
 export default function App() {
   return (
     <>
-      <Basic />
+      <Counter />
     </>
   );
 }
