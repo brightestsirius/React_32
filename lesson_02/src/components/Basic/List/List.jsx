@@ -2,19 +2,12 @@ import React from "react";
 import "./style.sass";
 
 import ListItem from "./ListItem";
-import Button from "../Button/Button";
 
-export default function List({
-  list = [],
-  getListColor,
-  handleItemRead = () => {},
-}) {
+export default function List({ list = [], color, borderRadius, onItemClick }) {
   return list.length ? (
-    <ul className="list" style={{ color: getListColor() }}>
-      {list.map(({ id, item }) => (
-        <ListItem key={id}>
-          {item} <Button onClick={() => handleItemRead(id)}>Read</Button>
-        </ListItem>
+    <ul className="list" style={{ color: color, borderRadius: borderRadius }}>
+      {list.map(({ id, value }) => (
+        <ListItem key={id} value={value} onItemClick={() => onItemClick(id)} />
       ))}
     </ul>
   ) : null;

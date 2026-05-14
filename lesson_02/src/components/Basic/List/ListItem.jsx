@@ -1,5 +1,10 @@
 import React from "react";
+import Button from "../Button/Button";
 
-export default function ListItem({ children }) {
-  return <li>{children}</li>;
+export default function ListItem({ value, onItemClick }) {
+  return (
+    <li>
+      {value} <Button title={`Read`} onClick={onItemClick} />
+    </li>
+  );
 }

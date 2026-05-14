@@ -1,62 +1,50 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import "./style.sass";
 
-export default function Counter() {
-  console.log(`🔄 in Counter component`);
-
+export default function Counter({ backgroundColor }) {
   const [counter, setCounter] = useState(0);
-  const [color, setColor] = useState(`#526374`);
+  const [color, setColor] = useState(`#243526`);
 
-  const [isEncreasing, setIsEncreasing] = useState(false);
-  const intervalId = useRef();
+  const [user, setUser] = useState({
+    position: `React dev`,
+    skills: [`React`, `Java`],
+    isAdmin: true,
+  });
 
-  const inputColorRef = useRef();
-
-  const dec = () => {
+  const decrement = () => {
     setCounter((prevState) => prevState - 1);
   };
 
-  const inc = () => {
+  const increment = () => {
     setCounter((prevState) => prevState + 1);
   };
 
-  const addValue = () => {
-    const value = +prompt(`Enter value`, 10);
-    setCounter((prevState) => prevState + value);
-  };
-
-  const startEncreasing = () => {
-    intervalId.current = setInterval(() => {
-      setCounter((prevState) => prevState + 1);
-    }, 1000);
-
-    setIsEncreasing(true);
-  };
-
-  const stopEncreasing = () => {
-    setIsEncreasing(false);
-    clearInterval(intervalId.current);
-  };
-
-  const handleSetColor = () => {
-    setColor(inputColorRef.current.value);
+  const handleUserPosition = () => {
+    const newPosition = prompt(`Enter new position`, user.position);
+    setUser((prevState) => ({ ...prevState, position: newPosition }));
   };
 
   return (
-    <div className="counter">
-      <button onClick={dec}>-</button>
-      <span style={{ color }}>{counter}</span>
-      <button onClick={inc}>+</button>
-      <input
-        type="color"
-        value={color}
-        onChange={handleSetColor}
-        ref={inputColorRef}
-      />
-      <button onClick={addValue}>Add value</button>
-      <button onClick={isEncreasing ? stopEncreasing : startEncreasing}>
-        {isEncreasing ? `Stop` : `Start`} encreaing
-      </button>
-    </div>
+    <>
+      <div className="counter">
+        <button onClick={decrement}>-</button>
+        <span style={{ color, backgroundColor }}>{counter}</span>
+        <button onClick={increment}>+</button>
+        <input
+          type="color"
+          value={color}
+          onChange={(e) => setColor(e.target.value)}
+        />
+      </div>
+
+      <ul>
+        {Object.entries(user).map(([key, value]) => (
+          <li key={key}>
+            {key}: {Array.isArray(value) ? value.join(`, `) : String(value)}
+          </li>
+        ))}
+      </ul>
+      <button onClick={handleUserPosition}>Change position</button>
+    </>
   );
 }
