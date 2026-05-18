@@ -1,63 +1,57 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 // 🔄🟢🟡🔴
 
-export default function List({ closeComponent }) {
-  const [list, setList] = useState([`cat`, `dog`, `lion`, `tiger`, `parrot`]);
-  const [color, setColor] = useState(`#656778`);
+export default function List({setIsList}) {
+  console.log(`🔄 rerender List`);
+  const [list, setList] = useState([`cat`, `dog`, `lion`, `tiger`]);
+  const [color, setColor] = useState(`#165456`);
   const [user, setUser] = useState({
     position: `React dev`,
-    email: `reactdev@gmail.com`,
+    email: `react@gmail.com`,
   });
-  const [isRemoving, setIsRemoving] = useState(false);
-  const intervalId = useRef();
 
   useEffect(() => {
-    console.log(`🟢 mount`);
+    console.log(`🟢 Open WebSocket`);
 
     return () => {
-      console.log(`🔴 unmount`);
-      intervalId.current && clearInterval(intervalId.current);
+      console.log(`🔴 Close WebSocket`);
     };
   }, []);
+
+  useEffect(() => {
+    if (list.length === 1) setColor(`#abcdef`);
+    if (color === `#abcdef`) console.log(`🟡 last item in list`);
+  }, [list, color]);
 
   useEffect(() => {
     console.log(`🟢 Start connection with`, user.email);
 
     return () => {
-      console.log(`🔴 Stop connection with`, user.email);
+      console.log(`🔴 Close connection with`, user.email);
     };
   }, [user.email]);
 
   useEffect(() => {
-    if (!list.length) {
-      intervalId.current && clearInterval(intervalId.current);
-      setIsRemoving(false);
-    }
-  }, [list]);
+    if(!list.length) setTimeout(()=>{
+        setIsList(false);
+    }, 3000)
+  }, [list.length])
 
-  const removeItems = () => {
-    intervalId.current = setInterval(() => {
-      console.log(`in interval`);
-      setList((prevState) => prevState.slice(0, -1));
-    }, 1000);
-
-    setIsRemoving(true);
-  };
-
-  const stopRemoveItems = () => {
-    clearInterval(intervalId.current);
-    setIsRemoving(false);
+  const removeItem = (index) => {
+    setList((prevState) => prevState.filter((_, i) => i !== index));
   };
 
   return list.length ? (
     <div
-      style={{ border: `1px dashed black`, padding: `10px`, margin: `10px` }}
+      style={{ border: `1px dashed black`, margin: `10px`, padding: `10px` }}
     >
-      <button onClick={closeComponent}>Close component</button>
+      <button onClick={() => setIsList(false)}>Close component</button>
       <ul style={{ color }}>
-        {list.map((item) => (
-          <li key={item}>{item}</li>
+        {list.map((item, index) => (
+          <li key={item}>
+            {item} <button onClick={() => removeItem(index)}>Remove</button>
+          </li>
         ))}
       </ul>
       <hr />
@@ -74,10 +68,6 @@ export default function List({ closeComponent }) {
           setUser((prevState) => ({ ...prevState, email: e.target.value }))
         }
       />
-      <hr />
-      <button onClick={!isRemoving ? removeItems : stopRemoveItems}>
-        {!isRemoving ? `Start` : `Stop`} removing
-      </button>
     </div>
   ) : null;
 }

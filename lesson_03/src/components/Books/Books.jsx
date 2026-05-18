@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { books as booksData } from "../../data/books";
 import BooksList from "./BooksList";
-import SortedList from "./SortedList";
+import SortedBooks from "./SortedBooks";
 import SelectedBook from "./SelectedBook";
 
 export default function Books() {
   const [books, setBooks] = useState(booksData);
   const [selectedBookId, setSelectedBookId] = useState(null);
+  
   const selectedBook = books.find((book) => book.id === selectedBookId) ?? null;
 
   const setBookRating = (id) => {
@@ -25,7 +26,7 @@ export default function Books() {
         setBookRating={setBookRating}
       />
       <hr />
-      <SortedList books={books} />
+      <SortedBooks books={books} />
       <hr />
       <SelectedBook selectedBook={selectedBook} />
     </>

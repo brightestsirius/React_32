@@ -1,4 +1,4 @@
-export default function SortedList({ books }) {
+export default function SortedBooks({ books }) {
   const sortedList = [...books];
 
   return sortedList.length ? (

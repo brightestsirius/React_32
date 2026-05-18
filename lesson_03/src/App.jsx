@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Books from "./components/Books/Books";
+
 import List from "./components/useEffect/List";
 
 export default function App() {
@@ -10,9 +11,9 @@ export default function App() {
       <Books />
       <hr />
       <button onClick={() => setIsList((prevState) => !prevState)}>
-        {!isList ? `Show` : `Remove`} List Component
+        {!isList ? `Render` : `Remove`} List component
       </button>
-      {isList && <List closeComponent={() => setIsList(false)} />}
+      {isList && <List setIsList={setIsList} />}
     </>
   );
 }
