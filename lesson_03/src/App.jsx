@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Books from "./components/Books/Books";
 import List from "./components/useEffect/List";
 
 export default function App() {
@@ -6,6 +7,8 @@ export default function App() {
 
   return (
     <>
+      <Books />
+      <hr />
       <button onClick={() => setIsList((prevState) => !prevState)}>
         {!isList ? `Show` : `Remove`} List Component
       </button>
