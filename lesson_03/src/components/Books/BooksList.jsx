@@ -7,7 +7,9 @@ export default function BooksList({ books, setSelectedBookId, setBookRating }) {
     <ul>
       {books.map((book) => (
         <BookCard key={book.id} book={book}>
-          <Button onClick={() => setBookRating(book.id)}>🌟 {book.rating}</Button>{" "}
+          <Button onClick={() => setBookRating(book.id)}>
+            🌟 {book.rating}
+          </Button>{" "}
           <Button onClick={() => setSelectedBookId(book.id)}>Read</Button>
         </BookCard>
       ))}
