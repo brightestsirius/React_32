@@ -1,34 +1,32 @@
 import { useState } from "react";
 import { books as booksData } from "./data/books";
 import BooksList from "./components/Books/BooksList";
-import SortedBooks from "./components/Books/SortedBooks";
+import BooksSortedList from "./components/Books/BooksSortedList";
 import SelectedBook from "./components/Books/SelectedBook";
 
 export default function App() {
   const [books, setBooks] = useState(booksData);
   const [selectedBook, setSelectedBook] = useState(null);
 
-  const sortedBooks = structuredClone(books).sort(
-    (a, b) => b.rating - a.rating,
-  );
+  const sortedBooks = [...books].sort((a, b) => b.rating - a.rating);
 
-  const setBook = (value) => setSelectedBook(value);
-
-  const setRating = (id) => {
-    const rating = +prompt(`Enter rating`, 10);
+  const setBookRating = (id) => {
     setBooks((prevState) =>
-      prevState.map((item) => {
-        if (item.id === id) item.rating = rating;
-        return item;
+      prevState.map((book) => {
+        return book.id === id ? { ...book, rating: book.rating + 1 } : book;
       }),
     );
   };
 
   return (
     <>
-      <BooksList books={books} setBook={setBook} setRating={setRating} />
+      <BooksList
+        books={books}
+        setSelectedBook={setSelectedBook}
+        setBookRating={setBookRating}
+      />
       <hr />
-      <SortedBooks books={sortedBooks} />
+      <BooksSortedList books={sortedBooks} />
       <hr />
       <SelectedBook selectedBook={selectedBook} />
     </>

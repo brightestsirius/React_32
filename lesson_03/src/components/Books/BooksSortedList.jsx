@@ -1,4 +1,4 @@
-export default function SortedBooks({ books }) {
+export default function BooksSortedList({ books }) {
   return books.length ? (
     <ul>
       {books.map((book) => (
