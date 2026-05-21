@@ -2,9 +2,12 @@ import { use, useState, useEffect } from "react";
 import { service } from "../../services/users";
 // 🌟🔄🟢🟡🔴
 
+import UsersList from "./UsersList";
+import UserForm from "./UserForm";
+
 const promiseList = service.get();
 
-export default function List() {
+export default function UsersData() {
   const initialUsers = use(promiseList);
   const [users, setUsers] = useState(initialUsers);
 
@@ -39,24 +42,24 @@ export default function List() {
     }
   };
 
+  const reloadUsers = async () => {
+    const data = await service.get();
+    setUsers(data);
+  }
+
   useEffect(() => {
     console.log(`🟡 users`, users);
   }, [users]);
 
-  return users.length ? (
-    <ul>
-      {users.map((user) => (
-        <li key={user.id}>
-          {user.name}{" "}
-          <input
-            type="email"
-            value={user.email}
-            onChange={(e) => setUserEmail(user.id, e.target.value)}
-          />{" "}
-          <button onClick={() => updateUser(user)}>Save changes</button>{" "}
-          <button onClick={() => deleteUser(user.id)}>Delete</button>
-        </li>
-      ))}
-    </ul>
-  ) : null;
+  return (
+    <>
+      <UsersList
+        users={users}
+        setUserEmail={setUserEmail}
+        updateUser={updateUser}
+        deleteUser={deleteUser}
+      />
+      <UserForm reloadUsers={reloadUsers} />
+    </>
+  );
 }

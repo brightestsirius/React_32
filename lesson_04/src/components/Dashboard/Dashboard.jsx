@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
-import List from "./List";
+import UsersData from "./UsersData";
 
 export default function Dashboard() {
   return (
@@ -10,7 +10,7 @@ export default function Dashboard() {
         fallbackRender={({ error }) => <p>Smth went wrong: {error.message}</p>}
       >
         <Suspense fallback={<p>Loading...</p>}>
-          <List />
+          <UsersData />
         </Suspense>
       </ErrorBoundary>
     </>
