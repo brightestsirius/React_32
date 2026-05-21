@@ -1,16 +1,16 @@
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
-import UsersData from "./UsersData";
+import UsersList from "./UsersList";
+import LoadingFallback from "./LoadingFallback";
+import ErrorFallback from "./ErrorFallback";
 
 export default function Dashboard() {
   return (
     <>
-      <ErrorBoundary
-        fallbackRender={({ error }) => <p>Smth went wrong: {error.message}</p>}
-      >
-        <Suspense fallback={<p>Loading...</p>}>
-          <UsersData />
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Suspense fallback={<LoadingFallback />}>
+          <UsersList />
         </Suspense>
       </ErrorBoundary>
     </>
