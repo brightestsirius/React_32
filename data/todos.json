@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Set up project with Vite and React",
+    "tags": ["setup", "vite", "react"],
+    "assignee": {
+      "name": "Alice Johnson",
+      "level": "senior"
+    },
+    "isDone": true
+  },
+  {
+    "title": "Build reusable Button component",
+    "tags": ["components", "ui"],
+    "assignee": {
+      "name": "Bob Smith",
+      "level": "junior"
+    },
+    "isDone": true
+  },
+  {
+    "title": "Implement useEffect cleanup",
+    "tags": ["hooks", "memory-leak"],
+    "assignee": {
+      "name": "Alice Johnson",
+      "level": "senior"
+    },
+    "isDone": false
+  },
+  {
+    "title": "Add form validation",
+    "tags": ["forms", "ux"],
+    "assignee": {
+      "name": "Carol White",
+      "level": "middle"
+    },
+    "isDone": false
+  },
+  {
+    "title": "Lift state up in task list",
+    "tags": ["state", "architecture"],
+    "assignee": {
+      "name": "Bob Smith",
+      "level": "junior"
+    },
+    "isDone": false
+  },
+  {
+    "title": "Replace fetch with axios",
+    "tags": ["axios", "api"],
+    "assignee": {
+      "name": "Carol White",
+      "level": "middle"
+    },
+    "isDone": false
+  },
+  {
+    "title": "Write PropTypes for all components",
+    "tags": ["types", "dx"],
+    "assignee": {
+      "name": "Alice Johnson",
+      "level": "senior"
+    },
+    "isDone": true
+  },
+  {
+    "title": "Set up ErrorBoundary",
+    "tags": ["error-handling", "suspense"],
+    "assignee": {
+      "name": "Bob Smith",
+      "level": "junior"
+    },
+    "isDone": false
+  },
+  {
+    "title": "Optimize re-renders with useCallback",
+    "tags": ["performance", "hooks"],
+    "assignee": {
+      "name": "Carol White",
+      "level": "middle"
+    },
+    "isDone": false
+  },
+  {
+    "title": "Deploy app to Vercel",
+    "tags": ["deploy", "ci-cd"],
+    "assignee": {
+      "name": "Alice Johnson",
+      "level": "senior"
+    },
+    "isDone": false
+  }
+]
