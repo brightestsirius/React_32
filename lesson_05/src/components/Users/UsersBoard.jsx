@@ -1,22 +1,24 @@
 // 🌟🔄🟢🟡🔴
 
-import UserList from "./UserList";
-import UserInfo from "./UserInfo";
 import UserForm from "./UserForm";
+import UsersList from "./UsersList";
+import UserInfo from "./UserInfo";
 
-import useUsers from "../../../hooks/useUsers";
+import useUsers from "../../hooks/useUsers";
+import useUserInfo from "../../hooks/useUserInfo";
+import useUserForm from "../../hooks/useUserForm";
 
-export default function UsersData() {
+export default function UsersBoard() {
   const {
     users,
-    user,
-    fetchUser,
+    addNewUser,
     deleteUser,
     changeUserEmail,
     changeUserAdmin,
     updateUser,
-    addUser,
   } = useUsers();
+  const { user, fetchUser } = useUserInfo();
+  const { addUser } = useUserForm(addNewUser);
 
   return (
     <>
@@ -24,7 +26,7 @@ export default function UsersData() {
 
       {users.length ? (
         <>
-          <UserList
+          <UsersList
             users={users}
             changeUserEmail={changeUserEmail}
             changeUserAdmin={changeUserAdmin}

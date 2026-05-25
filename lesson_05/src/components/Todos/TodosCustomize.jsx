@@ -1,13 +1,13 @@
 import { memo } from "react";
 
-export default memo(function TodoListCustomize({ color, setColor }) {
-  console.log(`🔄 in TodoListCustomize`);
+export default memo(function TodosCustomize({ color, setColor }) {
+  console.log(`🔄 in TodosCustomize`);
   return (
     <label>
       Select color:{" "}
       <input
         type="color"
-        value={color}
+        color={color}
         onChange={(e) => setColor(e.target.value)}
       />
     </label>

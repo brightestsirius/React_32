@@ -1,15 +1,13 @@
 import { useState } from "react";
 
-const INITIAL_USER = {
-  name: `Taras`,
-  email: `sheva@gmail.com`,
-  isAdmin: false,
-};
-
 export default function UserForm({ addUser }) {
-  const [newUser, setNewUser] = useState(INITIAL_USER);
+  const [newUser, setNewUser] = useState({
+    name: `Taras`,
+    email: `sheva@gmail.com`,
+    isAdmin: false,
+  });
 
-  const submitUserForm = (e) => {
+  const submitUserForm = async (e) => {
     e.preventDefault();
     addUser(newUser);
   };

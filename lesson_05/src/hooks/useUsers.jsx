@@ -4,16 +4,6 @@ import { service } from "../services/users";
 export default function useUsers() {
   const initialUsers = use(service.usePromise);
   const [users, setUsers] = useState(initialUsers);
-  const [user, setUser] = useState(null);
-
-  const fetchUser = async (id) => {
-    try {
-      const data = await service.get(id);
-      setUser(data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
 
   const deleteUser = async (id) => {
     try {
@@ -55,23 +45,14 @@ export default function useUsers() {
     }
   };
 
-  const addUser = async (user) => {
-    try {
-      const addedUser = await service.post(user);
-      setUsers((prevState) => [...prevState, addedUser]);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  const addNewUser = (user) => setUsers((prevState) => [...prevState, user]);
 
   return {
     users,
-    user,
-    fetchUser,
     deleteUser,
     changeUserEmail,
     changeUserAdmin,
     updateUser,
-    addUser,
+    addNewUser,
   };
 }
