@@ -1,7 +1,12 @@
 [
   {
+    "id": "1",
     "title": "Set up project with Vite and React",
-    "tags": ["setup", "vite", "react"],
+    "tags": [
+      "setup",
+      "vite",
+      "react"
+    ],
     "assignee": {
       "name": "Alice Johnson",
       "level": "senior"
@@ -9,8 +14,12 @@
     "isDone": true
   },
   {
+    "id": "2",
     "title": "Build reusable Button component",
-    "tags": ["components", "ui"],
+    "tags": [
+      "components",
+      "ui"
+    ],
     "assignee": {
       "name": "Bob Smith",
       "level": "junior"
@@ -18,8 +27,12 @@
     "isDone": true
   },
   {
+    "id": "3",
     "title": "Implement useEffect cleanup",
-    "tags": ["hooks", "memory-leak"],
+    "tags": [
+      "hooks",
+      "memory-leak"
+    ],
     "assignee": {
       "name": "Alice Johnson",
       "level": "senior"
@@ -27,8 +40,12 @@
     "isDone": false
   },
   {
+    "id": "4",
     "title": "Add form validation",
-    "tags": ["forms", "ux"],
+    "tags": [
+      "forms",
+      "ux"
+    ],
     "assignee": {
       "name": "Carol White",
       "level": "middle"
@@ -36,8 +53,12 @@
     "isDone": false
   },
   {
+    "id": "5",
     "title": "Lift state up in task list",
-    "tags": ["state", "architecture"],
+    "tags": [
+      "state",
+      "architecture"
+    ],
     "assignee": {
       "name": "Bob Smith",
       "level": "junior"
@@ -45,8 +66,12 @@
     "isDone": false
   },
   {
+    "id": "6",
     "title": "Replace fetch with axios",
-    "tags": ["axios", "api"],
+    "tags": [
+      "axios",
+      "api"
+    ],
     "assignee": {
       "name": "Carol White",
       "level": "middle"
@@ -54,8 +79,12 @@
     "isDone": false
   },
   {
+    "id": "7",
     "title": "Write PropTypes for all components",
-    "tags": ["types", "dx"],
+    "tags": [
+      "types",
+      "dx"
+    ],
     "assignee": {
       "name": "Alice Johnson",
       "level": "senior"
@@ -63,8 +92,12 @@
     "isDone": true
   },
   {
+    "id": "8",
     "title": "Set up ErrorBoundary",
-    "tags": ["error-handling", "suspense"],
+    "tags": [
+      "error-handling",
+      "suspense"
+    ],
     "assignee": {
       "name": "Bob Smith",
       "level": "junior"
@@ -72,17 +105,25 @@
     "isDone": false
   },
   {
+    "id": "9",
     "title": "Optimize re-renders with useCallback",
-    "tags": ["performance", "hooks"],
+    "tags": [
+      "performance",
+      "hooks"
+    ],
     "assignee": {
       "name": "Carol White",
       "level": "middle"
     },
-    "isDone": false
+    "isDone": true
   },
   {
+    "id": "10",
     "title": "Deploy app to Vercel",
-    "tags": ["deploy", "ci-cd"],
+    "tags": [
+      "deploy",
+      "ci-cd"
+    ],
     "assignee": {
       "name": "Alice Johnson",
       "level": "senior"
