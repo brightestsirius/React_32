@@ -1,7 +1,8 @@
-import { use, useState, useCallback } from "react";
+import { use, useState, useCallback, useMemo } from "react";
 import { service } from "../services/todos";
+import { TODOS_FILTER_DONE, TODOS_FILTER_NOT_DONE } from "../constants/todos";
 
-export default function useTodos() {
+export default function useTodos(filter) {
   const initialTodos = use(service.usePromise);
   const [todos, setTodos] = useState(initialTodos);
 
@@ -18,5 +19,30 @@ export default function useTodos() {
     }
   }, []);
 
-  return { todos, handleChangeTodo };
+  const filteredTodo = useMemo(
+    () =>
+      [...todos].filter((todo) => {
+        console.log(`filtering`);
+        switch (filter) {
+          case TODOS_FILTER_DONE:
+            return todo.isDone;
+          case TODOS_FILTER_NOT_DONE:
+            return !todo.isDone;
+          default:
+            return todo;
+        }
+      }),
+    [filter, todos],
+  );
+
+  const sortedTodos = useMemo(
+    () =>
+      [...filteredTodo].sort((a, b) => {
+        console.log(`sorting`);
+        return b.isDone - a.isDone;
+      }),
+    [filteredTodo],
+  );
+
+  return { todos, sortedTodos, handleChangeTodo };
 }

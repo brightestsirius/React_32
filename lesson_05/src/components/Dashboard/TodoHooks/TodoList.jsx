@@ -1,45 +1,11 @@
-import { memo, useMemo } from "react";
-import {
-  TODOS_FILTER_DONE,
-  TODOS_FILTER_NOT_DONE,
-} from "../../../constants/todos";
+import { memo } from "react";
 
-export default memo(function TodoList({
-  todos,
-  color,
-  handleChangeTodo,
-  filter,
-}) {
+export default memo(function TodoList({ todos, color, handleChangeTodo }) {
   console.log(`🔄 in TodoList`);
 
-  const filteredTodo = useMemo(
-    () =>
-      [...todos].filter((todo) => {
-        console.log(`filtering`);
-        switch (filter) {
-          case TODOS_FILTER_DONE:
-            return todo.isDone;
-          case TODOS_FILTER_NOT_DONE:
-            return !todo.isDone;
-          default:
-            return todo;
-        }
-      }),
-    [filter, todos],
-  );
-
-  const sortedTodos = useMemo(
-    () =>
-      [...filteredTodo].sort((a, b) => {
-        console.log(`sorting`);
-        return b.isDone - a.isDone;
-      }),
-    [filteredTodo],
-  );
-
-  return sortedTodos.length ? (
+  return todos.length ? (
     <ul>
-      {sortedTodos.map((todo) => (
+      {todos.map((todo) => (
         <li key={todo.id} style={{ color }}>
           {todo.title}{" "}
           <input

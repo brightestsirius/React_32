@@ -10,16 +10,16 @@ import useCustomize from "../../../hooks/useCustomize";
 import useFilter from "../../../hooks/useFilter";
 
 export default function TodoHooks() {
-  const { todos, handleChangeTodo } = useTodos();
-  const { color, setColor } = useCustomize();
   const { filter, setFilter } = useFilter();
+  const { sortedTodos, handleChangeTodo } = useTodos(filter);
+  const { color, setColor } = useCustomize();
 
   console.log(`🟢 in TodoHooks`);
 
   return (
     <>
       <TodoList
-        todos={todos}
+        todos={sortedTodos}
         color={color}
         filter={filter}
         handleChangeTodo={handleChangeTodo}
