@@ -21,7 +21,7 @@ export default function Nav() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/todos" className={getClassName}>
+          <NavLink to="/todos" className={getClassName} end>
             Todos
           </NavLink>
         </li>
