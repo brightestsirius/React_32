@@ -1,21 +1,18 @@
-import { Suspense } from "react";
 import { createBrowserRouter } from "react-router";
 
 import HomeRoute from "../routes/HomeRoute";
 import TodosRoute from "../routes/TodosRoute";
 import TodosStatisticsRoute from "../routes/TodosStatisticsRoute";
-import TodosItemRoute from "../routes/TodosItemRoute";
+import TodoItemRoute from "../routes/TodoItemRoute";
+import AuthRoute from "../routes/AuthRoute";
 import ErrorPage from "../pages/ErrorPage";
+
+import { service as todosService } from "../services/todos";
 
 import RootLayout from "../layouts/RootLayout";
 import TodosLayout from "../layouts/TodosLayout";
 
-import { todosLoader, todoLoader } from "../loaders/todos";
-
-import AuthGuard from "../guards/AuthGuard";
-import { AccountRouteLazy } from "../routes/AccountRouteLazy";
-
-let router = createBrowserRouter([
+export let router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
@@ -26,46 +23,40 @@ let router = createBrowserRouter([
         errorElement: <ErrorPage />,
       },
       {
-        path: "todos",
+        path: "/todos",
         Component: TodosLayout,
         children: [
           {
             id: "todos",
-            loader: todosLoader,
-            errorElement: <ErrorPage />,
+            loader: () => todosService.get(),
             HydrateFallback: () => <p>Loading...</p>,
             children: [
               {
                 index: true,
                 Component: TodosRoute,
+                errorElement: <ErrorPage />,
               },
               {
                 path: "statistics",
                 Component: TodosStatisticsRoute,
+                errorElement: <ErrorPage />,
               },
             ],
           },
-
           {
             path: ":id",
-            Component: TodosItemRoute,
-            loader: todoLoader,
+            loader: ({ params }) => todosService.get(params.id),
+            Component: TodoItemRoute,
+            HydrateFallback: () => <p>Loading...</p>,
+            errorElement: <ErrorPage />,
           },
         ],
       },
       {
         path: "account",
-        element: (
-          <AuthGuard>
-            <Suspense fallback={<p>Loading...</p>}>
-              <AccountRouteLazy />
-            </Suspense>
-          </AuthGuard>
-        ),
+        Component: AuthRoute,
         errorElement: <ErrorPage />,
       },
     ],
   },
 ]);
-
-export { router };

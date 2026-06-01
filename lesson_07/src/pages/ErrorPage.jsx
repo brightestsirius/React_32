@@ -4,5 +4,9 @@ import { useRouteError } from "react-router";
 export default function ErrorPage() {
   const error = useRouteError();
 
-  return <div>Error: {error.message}</div>;
+  return (
+    <>
+      <h3>Oops {error.message}!</h3>
+    </>
+  );
 }

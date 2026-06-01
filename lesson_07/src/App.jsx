@@ -1,12 +1,12 @@
-import { useReducer } from "react";
+import React from "react";
 import { RouterProvider } from "react-router";
 import { router } from "./app/router";
 
 import { AuthContext } from "./contexts/AuthContext";
-import { reducer, initialState } from "./store/authSlice";
+import useAuthSlice from "./store/useAuthSlice";
 
 export default function App() {
-  const [authState, authDispatch] = useReducer(reducer, initialState);
+  const { authState, authDispatch } = useAuthSlice();
 
   return (
     <AuthContext.Provider value={{ authState, authDispatch }}>
