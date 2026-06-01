@@ -1,8 +1,8 @@
-import { useLoaderData, Link, useSearchParams } from "react-router";
+import { useRouteLoaderData, Link, useSearchParams } from "react-router";
 import { TODOS_FILTER } from "../../constants/todos";
 
 export default function TodosList() {
-  const todos = useLoaderData();
+  const todos = useRouteLoaderData("todos");
   const [searchParams] = useSearchParams();
   const searchParamsFilter = searchParams.get(`filter`);
 

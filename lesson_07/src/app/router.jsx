@@ -30,23 +30,26 @@ let router = createBrowserRouter([
         Component: TodosLayout,
         children: [
           {
-            index: true,
-            Component: TodosRoute,
+            id: "todos",
             loader: todosLoader,
+            errorElement: <ErrorPage />,
             HydrateFallback: () => <p>Loading...</p>,
-            errorElement: <ErrorPage />,
+            children: [
+              {
+                index: true,
+                Component: TodosRoute,
+              },
+              {
+                path: "statistics",
+                Component: TodosStatisticsRoute,
+              },
+            ],
           },
-          {
-            path: "statistics",
-            Component: TodosStatisticsRoute,
-            errorElement: <ErrorPage />,
-          },
+
           {
             path: ":id",
             Component: TodosItemRoute,
             loader: todoLoader,
-            HydrateFallback: () => <p>Loading...</p>,
-            errorElement: <ErrorPage />,
           },
         ],
       },
