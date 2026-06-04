@@ -1,5 +1,5 @@
 import { Outlet, useNavigation } from "react-router";
-import Header from "../pages/Header/Header";
+import Header from "../components/Header/Header";
 
 export default function RootLayout() {
   const navigation = useNavigation();
