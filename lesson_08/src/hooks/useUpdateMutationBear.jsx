@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { service } from "../services/bears";
-import { QUERY_KEYS } from "./queryKeys";
 
-export function useUpdateBearMutation() {
+export function useUpdateMutationBear() {
   const queryClient = useQueryClient();
+
   return useMutation({
-    mutationFn: (updated) => service.put(updated),
+    mutationFn: (updatedBear) => service.put(updatedBear),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.BEARS });
+      queryClient.invalidateQueries({ queryKey: ["bears"] });
     },
   });
 }

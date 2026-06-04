@@ -8,18 +8,13 @@ export default function TodosFilter() {
   const filter = searchParamsFilter ?? TODOS_FILTER.ALL;
 
   const handleSetFilter = (e) => {
-    const value = e.target.value;
-    if (value === TODOS_FILTER.ALL) {
-      setSearchParams({});
-    } else {
-      setSearchParams({ filter: value });
-    }
+    setSearchParams({ filter: e.target.value });
   };
 
   return (
     <label>
       Filter todos:{" "}
-      <select value={filter} onChange={handleSetFilter}>
+      <select value={filter}  onChange={handleSetFilter}>
         <option value={TODOS_FILTER.ALL}>All</option>
         <option value={TODOS_FILTER.DONE}>Done</option>
         <option value={TODOS_FILTER.NOT_DONE}>Not Done</option>

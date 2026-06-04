@@ -6,12 +6,14 @@ import TodosStatisticsRoute from "../routes/TodosStatisticsRoute";
 import TodoItemRoute from "../routes/TodoItemRoute";
 import ErrorPage from "../pages/ErrorPage";
 
+import { service as todosService } from "../services/todos";
+
 import RootLayout from "../layouts/RootLayout";
 import TodosLayout from "../layouts/TodosLayout";
 
 import AuthGuard from "../guards/AuthGuard";
 
-export const router = createBrowserRouter([
+export let router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
@@ -46,6 +48,7 @@ export const router = createBrowserRouter([
         path: "account",
         lazy: async () => {
           const { default: AuthRoute } = await import("../routes/AuthRoute");
+
           return {
             element: (
               <AuthGuard>

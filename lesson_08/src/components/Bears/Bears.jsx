@@ -1,28 +1,24 @@
-import { useBears } from "../../store/bearsStore";
-import { useBearsQuery } from "../../hooks/useBearsQuery";
-import { useUpdateBearMutation } from "../../hooks/useUpdateBearMutation";
+import { useBearsStore } from "../../store/useBearsStore";
+import { useQueryBears } from "../../hooks/useQueryBears";
+import { useUpdateMutationBear } from "../../hooks/useUpdateMutationBear";
 
 export default function Bears() {
-  const bears = useBears((state) => state.bears);
-  const increasePopulation = useBears((state) => state.increasePopulation);
-  const updateBears = useBears((state) => state.updateBears);
+  const bears = useBearsStore((state) => state.bears);
+  const increasePopulation = useBearsStore((state) => state.increasePopulation);
+  const updateBears = useBearsStore((state) => state.updateBears);
 
-  const {
-    data: bearsData = [],
-    isLoading,
-    isError,
-    error,
-  } = useBearsQuery();
-  const updateBearMutation = useUpdateBearMutation();
+  const { data: bearsData = [], isLoading, isError, error } = useQueryBears();
+  const updateMutationBear = useUpdateMutationBear();
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error {error.message}</p>;
 
   return (
-    <div>
-      <span>Bears: {bears}</span>{" "}
-      <button onClick={increasePopulation}>+</button>{" "}
+    <div style={{ border: `1px solid black`, padding: `10px` }}>
+      <span>Client Bears from Zustand: {bears}</span>{" "}
+      <button onClick={increasePopulation}>Add</button>{" "}
       <input type="number" onBlur={(e) => updateBears(+e.target.value)} />
       <hr />
-      {isLoading && <p>Loading...</p>}
-      {isError && <p>Error {error.message}</p>}
       {bearsData.length ? (
         <ul>
           {bearsData.map((bear) => (
@@ -30,7 +26,7 @@ export default function Bears() {
               key={bear.id}
               style={{ color: bear.isActive && `crimson` }}
               onClick={() =>
-                updateBearMutation.mutate({ ...bear, isActive: !bear.isActive })
+                updateMutationBear.mutate({ ...bear, isActive: !bear.isActive })
               }
             >
               {bear.name}

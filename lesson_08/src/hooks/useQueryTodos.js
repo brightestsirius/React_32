@@ -1,11 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { service } from "../services/todos";
-import { QUERY_KEYS } from "./queryKeys";
 
-export function useTodosQuery() {
+export function useQueryTodos() {
   return useQuery({
-    queryKey: QUERY_KEYS.TODOS,
+    queryKey: ["todos"],
     queryFn: () => service.get(),
-    staleTime: 60_000,
+    staleTime: Infinity
   });
 }

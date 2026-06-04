@@ -1,4 +1,4 @@
-import { useAuthStore } from "../../store/authStore";
+import { useAuthStore } from "../../store/useAuthStore";
 
 export default function AuthBtn() {
   const isAuth = useAuthStore((state) => state.isAuth);

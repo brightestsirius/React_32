@@ -1,6 +1,6 @@
 import React from "react";
 import TodoItem from "../components/Todo/TodoItem";
-import NavigateBtn from "../components/NavigateBtn/NavigateBtn";
+import NavigateBtn from "../components/NavigateBtn/NavigateBtn"
 
 export default function TodoItemRoute() {
   return (
