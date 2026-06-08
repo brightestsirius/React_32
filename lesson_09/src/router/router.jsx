@@ -3,6 +3,8 @@ import { createBrowserRouter } from "react-router";
 import AuthLayout from "../layouts/AuthLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
 
+import HomeRoute from "../routes/HomeRoute";
+
 import LoginRoute from "../routes/LoginRoute";
 import RegisterRoute from "../routes/RegisterRoute";
 
@@ -13,52 +15,70 @@ import ProfileRoute from "../routes/ProfileRoute";
 import LocationDetailsRoute from "../routes/LocationDetailsRoute";
 
 import ErrorRoute from "../routes/ErrorRoute";
+import NotFoundRoute from "../routes/NotFoundRoute";
+
+import ProtectedRoute from "./ProtectedRoute";
+import PublicRoute from "./PublicRoute";
 
 export const router = createBrowserRouter([
   {
-    Component: AuthLayout,
+    index: true,
+    Component: HomeRoute,
+  },
+  {
+    Component: PublicRoute,
     children: [
       {
-        path: "login",
-        Component: LoginRoute,
+        Component: AuthLayout,
         errorElement: <ErrorRoute />,
-      },
-      {
-        path: "register",
-        Component: RegisterRoute,
-        errorElement: <ErrorRoute />,
+        children: [
+          {
+            path: "login",
+            Component: LoginRoute,
+          },
+          {
+            path: "register",
+            Component: RegisterRoute,
+          },
+        ],
       },
     ],
   },
   {
-    path: "dashboard",
-    Component: DashboardLayout,
+    Component: ProtectedRoute,
     children: [
       {
-        path: "map",
-        Component: MapRoute,
+        path: "dashboard",
+        Component: DashboardLayout,
         errorElement: <ErrorRoute />,
-      },
-      {
-        path: "analytics",
-        Component: AnalyticsRoute,
-        errorElement: <ErrorRoute />,
-      },
-      {
-        path: "favorites",
-        Component: FavoritesRoute,
-        errorElement: <ErrorRoute />,
-      },
-      {
-        path: "profile",
-        Component: ProfileRoute,
-        errorElement: <ErrorRoute />,
-      },
-      {
-        path: "location/:id",
-        Component: LocationDetailsRoute,
-        errorElement: <ErrorRoute />,
+        children: [
+          {
+            path: "map",
+            Component: MapRoute,
+          },
+          {
+            path: "analytics",
+            Component: AnalyticsRoute,
+          },
+          {
+            path: "favorites",
+            Component: FavoritesRoute,
+          },
+          {
+            path: "profile",
+            Component: ProfileRoute,
+          },
+          {
+            path: "location/:id",
+            Component: LocationDetailsRoute,
+          },
+        ],
       },
     ],
+  },
+
+  {
+    path: "*",
+    Component: NotFoundRoute,
   },
 ]);
