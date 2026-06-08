@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
 import { useLogin } from "../../hooks/useLogin";
 
 export default function LoginForm() {
@@ -8,14 +7,11 @@ export default function LoginForm() {
     password: "12345678",
   });
 
-  const navigate = useNavigate();
   const loginMutation = useLogin();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    loginMutation.mutate(credentials, {
-      onSuccess: () => navigate("/dashboard/map", { replace: true }),
-    });
+    loginMutation.mutate(credentials);
   };
 
   return (
@@ -51,7 +47,9 @@ export default function LoginForm() {
           Error: {loginMutation.error.message}
         </p>
       )}
-      <button>{loginMutation.isPending ? `Logged...` : `Log in`}</button>
+      <button disabled={loginMutation.isPending}>
+        {loginMutation.isPending ? `Logged...` : `Log in`}
+      </button>
     </form>
   );
 }

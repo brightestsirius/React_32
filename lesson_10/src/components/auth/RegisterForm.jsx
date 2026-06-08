@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
 import { useRegister } from "../../hooks/useRegister";
 
 export default function RegisterForm() {
@@ -9,18 +8,15 @@ export default function RegisterForm() {
     password: "12345678",
   });
 
-  const navigate = useNavigate();
   const registerMutation = useRegister();
 
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    registerMutation.mutate(credentials, {
-      onSuccess: () => navigate("/dashboard/map", { replace: true }),
-    });
+    registerMutation.mutate(credentials);
   };
 
   return (
-    <form onSubmit={handleLogin} className="auth__form">
+    <form onSubmit={handleRegister} className="auth__form">
       <label>
         Name:{" "}
         <input
@@ -65,8 +61,8 @@ export default function RegisterForm() {
           Error: {registerMutation.error.message}
         </p>
       )}
-      <button>
-        {registerMutation.isPending ? `Registerring...` : `Register`}
+      <button disabled={registerMutation.isPending}>
+        {registerMutation.isPending ? `Registering...` : `Register`}
       </button>
     </form>
   );
