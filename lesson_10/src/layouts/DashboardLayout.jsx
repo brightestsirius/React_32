@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import Sidebar from "../components/common/Sidebar";
+import Header from "../components/common/Header";
 
 export default function DashboardLayout() {
   return (
@@ -8,6 +9,7 @@ export default function DashboardLayout() {
         <Sidebar />
       </aside>
       <main className="dashboard__main">
+        <Header />
         <Outlet />
       </main>
     </div>
