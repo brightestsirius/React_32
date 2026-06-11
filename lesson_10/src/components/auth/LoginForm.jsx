@@ -1,28 +1,28 @@
-import { useLogin } from "../../hooks/useLogin";
 import { useForm } from "react-hook-form";
+import { useLogin } from "../../hooks/useLogin";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as zod from "zod";
 
-const schema = zod
-  .object({
-    email: zod.string().min(1, "Email is required").email("Invalid email"),
-    password: zod.string().min(6, "Password must be at least 6 characters"),
-  })
-  .required();
+import { loginSchema } from "../../schemas/authSchemas";
+
+const CUSTOM_USER = {
+  email: `john@example.com`,
+  password: `12345678`,
+};
 
 export default function LoginForm() {
-  const loginMutation = useLogin();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: `john@example.com`,
-      password: `12345678`,
+      email: CUSTOM_USER.email,
+      password: CUSTOM_USER.password,
     },
   });
+
+  const loginMutation = useLogin();
 
   const onSubmit = (data) => {
     loginMutation.mutate(data);

@@ -9,9 +9,7 @@ export const profileSchema = zod.object({
 export const changePasswordSchema = zod
   .object({
     currentPassword: zod.string().min(6),
-
     newPassword: zod.string().min(6),
-
     confirmPassword: zod.string().min(6),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {

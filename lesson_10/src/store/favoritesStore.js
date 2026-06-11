@@ -31,8 +31,6 @@ export const useFavoritesStore = create(
           addFavorite(id);
         }
       },
-
-      isFavorite: (id) => get().favoriteIds.includes(id),
     }),
     {
       name: "favorites-storage",

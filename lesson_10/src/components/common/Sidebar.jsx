@@ -1,12 +1,12 @@
 import SidebarNav from "./SidebarNav";
-import LogoutForm from "../auth/LogoutForm";
+import LogoutButton from "../auth/LogoutButton";
 
 export default function Sidebar() {
   return (
     <>
       <SidebarNav />
       <hr />
-      <LogoutForm />
+      <LogoutButton />
     </>
   );
 }
