@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "name": "John Snow",
+    "email": "john@example.com",
+    "password": "12345678",
+    "phone": "+380501112233",
+    "avatar": "https://i.pravatar.cc/150?img=1"
+  },
+  {
+    "id": "2",
+    "name": "Anna Smith",
+    "email": "anna@example.com",
+    "password": "12345678",
+    "phone": "+380502223344",
+    "avatar": "https://i.pravatar.cc/150?img=2"
+  }
+]
