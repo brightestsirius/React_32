@@ -20,8 +20,6 @@ import NotFoundRoute from "../routes/NotFoundRoute";
 import ProtectedRoute from "./ProtectedRoute";
 import PublicRoute from "./PublicRoute";
 
-import StylesRoute from "../routes/StylesRoute";
-
 export const router = createBrowserRouter([
   {
     index: true,
@@ -77,11 +75,7 @@ export const router = createBrowserRouter([
           {
             path: "location/:id",
             Component: LocationDetailsRoute,
-          },
-          {
-            path: "styles",
-            Component: StylesRoute,
-          },
+          }
         ],
       },
     ],
