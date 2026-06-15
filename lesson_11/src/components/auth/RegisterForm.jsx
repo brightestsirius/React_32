@@ -1,62 +1,57 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useRegister } from "../../hooks/useRegister";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { registerSchema } from "../../schemas/authSchemas";
 
 const CUSTOM_USER = {
-  name: `Taras`,
-  email: `taras@example.com`,
+  name: `Taras Sheva`,
+  email: `sheva@example.com`,
   password: `12345678`,
 };
 
 export default function RegisterForm() {
-  const [newUser, setNewUser] = useState(CUSTOM_USER);
-  const useRegisterMutation = useRegister();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      name: CUSTOM_USER.name,
+      email: CUSTOM_USER.email,
+      password: CUSTOM_USER.password,
+    },
+  });
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    useRegisterMutation.mutate(newUser);
+  const registerMutation = useRegister();
+
+  const onSubmit = (data) => {
+    registerMutation.mutate(data);
   };
 
   return (
-    <form className="auth__form" onSubmit={handleLogin}>
+    <form className="auth__form" onSubmit={handleSubmit(onSubmit)}>
       <label>
-        Name{" "}
-        <input
-          type="text"
-          value={newUser.name}
-          onChange={(e) =>
-            setNewUser((prevState) => ({ ...prevState, name: e.target.value }))
-          }
-        />
+        Name <input type="text" {...register("name")} />
+        <p className="auth__form--error">{errors.name?.message}</p>
       </label>
       <label>
-        Email{" "}
-        <input
-          type="email"
-          value={newUser.email}
-          onChange={(e) =>
-            setNewUser((prevState) => ({ ...prevState, email: e.target.value }))
-          }
-        />
+        Email <input type="email" {...register("email")} />
+        <p className="auth__form--error">{errors.email?.message}</p>
       </label>
       <label>
-        Passowrd{" "}
-        <input
-          type="password"
-          value={newUser.password}
-          onChange={(e) =>
-            setNewUser((prevState) => ({
-              ...prevState,
-              password: e.target.value,
-            }))
-          }
-        />
+        Password <input type="password" {...register("password")} />
+        <p className="auth__form--error">{errors.password?.message}</p>
       </label>
-      {useRegisterMutation.isError && (
+      {registerMutation.isError && (
         <p className="auth__form--error">
-          Error: {useRegisterMutation.error.message}
+          Error: {registerMutation.error.message}
         </p>
       )}
-      <button>Register</button>
+      <button disabled={registerMutation.isPending}>
+        {registerMutation.isPending ? `Registerring...` : `Register`}
+      </button>
     </form>
   );
 }
