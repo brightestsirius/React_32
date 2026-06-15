@@ -45,9 +45,6 @@ export default function ChangePasswordForm() {
             {...register("currentPassword")}
             aria-invalid={!!errors.currentPassword}
           />
-          <Button type="button" variant="link" size="sm" className="text-primary shrink-0 px-0">
-            Change password
-          </Button>
         </div>
         {errors.currentPassword && (
           <p className="text-xs text-destructive">{errors.currentPassword.message}</p>
