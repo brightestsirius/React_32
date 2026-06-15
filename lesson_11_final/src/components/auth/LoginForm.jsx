@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useLogin } from "../../hooks/useLogin";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { loginSchema } from "../../schemas/authSchemas";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const CUSTOM_USER = {
   email: `john@example.com`,
@@ -29,21 +31,53 @@ export default function LoginForm() {
   };
 
   return (
-    <form className="auth__form" onSubmit={handleSubmit(onSubmit)}>
-      <label>
-        Email <input type="email" {...register("email")} />
-        <p className="auth__form--error">{errors.email?.message}</p>
-      </label>
-      <label>
-        Password <input type="password" {...register("password")} />
-        <p className="auth__form--error">{errors.password?.message}</p>
-      </label>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <div className="space-y-1.5">
+        <Label htmlFor="email">Email</Label>
+        <Input
+          id="email"
+          type="email"
+          placeholder="john@example.com"
+          {...register("email")}
+          aria-invalid={!!errors.email}
+        />
+        {errors.email && (
+          <p className="text-xs text-destructive">{errors.email.message}</p>
+        )}
+      </div>
+
+      <div className="space-y-1.5">
+        <div className="flex items-center justify-between">
+          <Label htmlFor="password">Password</Label>
+          <a href="#" className="text-xs text-primary hover:underline">
+            Forgot password?
+          </a>
+        </div>
+        <Input
+          id="password"
+          type="password"
+          {...register("password")}
+          aria-invalid={!!errors.password}
+        />
+        {errors.password && (
+          <p className="text-xs text-destructive">{errors.password.message}</p>
+        )}
+      </div>
+
       {loginMutation.isError && (
-        <p className="auth__form--error">
-          Error: {loginMutation.error.message}
+        <p className="text-xs text-destructive">
+          {loginMutation.error.message}
         </p>
       )}
-      <button disabled={loginMutation.isPending}>{loginMutation.isPending ? `Logging in...` : `Log in`}</button>
+
+      <Button
+        type="submit"
+        className="w-full"
+        size="lg"
+        disabled={loginMutation.isPending}
+      >
+        {loginMutation.isPending ? "Signing in..." : "Sign in"}
+      </Button>
     </form>
   );
 }

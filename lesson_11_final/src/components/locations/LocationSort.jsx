@@ -3,7 +3,6 @@ import { SORT_OPTIONS } from "../../constants/locationFilters";
 
 export default function LocationSort() {
   const [searchParams, setSearchParams] = useSearchParams();
-
   const sort = searchParams.get("sort") || "name";
 
   const handleChange = (event) => {
@@ -13,15 +12,16 @@ export default function LocationSort() {
   };
 
   return (
-    <label>
-      Sort by:{" "}
-      <select value={sort} onChange={handleChange}>
-        {Object.entries(SORT_OPTIONS).map(([value, option]) => (
-          <option key={value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    </label>
+    <select
+      value={sort}
+      onChange={handleChange}
+      className="text-sm text-muted-foreground bg-transparent outline-none cursor-pointer pr-1"
+    >
+      {Object.entries(SORT_OPTIONS).map(([value, option]) => (
+        <option key={value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
   );
 }

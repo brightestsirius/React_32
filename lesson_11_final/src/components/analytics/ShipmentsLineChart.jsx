@@ -1,12 +1,4 @@
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  CartesianGrid,
-} from "recharts";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 
 export default function ShipmentsLineChart({ locations }) {
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
@@ -21,19 +13,25 @@ export default function ShipmentsLineChart({ locations }) {
 
   return (
     <>
-      <h4>Shipments by Month</h4>
-      <div className="chart">
-        <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={chartData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="month" />
-            <YAxis />
-            <Tooltip />
-
-            <Line type="monotone" dataKey="shipments" />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
+      <h4 className="text-sm font-semibold mb-4">Shipments by month</h4>
+      <ResponsiveContainer width="100%" height={260}>
+        <LineChart data={chartData}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+          <XAxis dataKey="month" tick={{ fontSize: 11 }} />
+          <YAxis tick={{ fontSize: 11 }} />
+          <Tooltip
+            contentStyle={{ fontSize: 12, borderRadius: 8, border: "1px solid #e5e7eb" }}
+          />
+          <Line
+            type="monotone"
+            dataKey="shipments"
+            stroke="oklch(0.546 0.215 262.88)"
+            strokeWidth={2}
+            dot={{ r: 3 }}
+            activeDot={{ r: 5 }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
     </>
   );
 }

@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useRegister } from "../../hooks/useRegister";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { registerSchema } from "../../schemas/authSchemas";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const CUSTOM_USER = {
   name: `Taras Sheva`,
@@ -31,27 +33,62 @@ export default function RegisterForm() {
   };
 
   return (
-    <form className="auth__form" onSubmit={handleSubmit(onSubmit)}>
-      <label>
-        Name <input type="text" {...register("name")} />
-        <p className="auth__form--error">{errors.name?.message}</p>
-      </label>
-      <label>
-        Email <input type="email" {...register("email")} />
-        <p className="auth__form--error">{errors.email?.message}</p>
-      </label>
-      <label>
-        Password <input type="password" {...register("password")} />
-        <p className="auth__form--error">{errors.password?.message}</p>
-      </label>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <div className="space-y-1.5">
+        <Label htmlFor="name">Name</Label>
+        <Input
+          id="name"
+          type="text"
+          placeholder="John Doe"
+          {...register("name")}
+          aria-invalid={!!errors.name}
+        />
+        {errors.name && (
+          <p className="text-xs text-destructive">{errors.name.message}</p>
+        )}
+      </div>
+
+      <div className="space-y-1.5">
+        <Label htmlFor="email">Email</Label>
+        <Input
+          id="email"
+          type="email"
+          placeholder="john@example.com"
+          {...register("email")}
+          aria-invalid={!!errors.email}
+        />
+        {errors.email && (
+          <p className="text-xs text-destructive">{errors.email.message}</p>
+        )}
+      </div>
+
+      <div className="space-y-1.5">
+        <Label htmlFor="password">Password</Label>
+        <Input
+          id="password"
+          type="password"
+          {...register("password")}
+          aria-invalid={!!errors.password}
+        />
+        {errors.password && (
+          <p className="text-xs text-destructive">{errors.password.message}</p>
+        )}
+      </div>
+
       {registerMutation.isError && (
-        <p className="auth__form--error">
-          Error: {registerMutation.error.message}
+        <p className="text-xs text-destructive">
+          {registerMutation.error.message}
         </p>
       )}
-      <button disabled={registerMutation.isPending}>
-        {registerMutation.isPending ? `Registerring...` : `Register`}
-      </button>
+
+      <Button
+        type="submit"
+        className="w-full"
+        size="lg"
+        disabled={registerMutation.isPending}
+      >
+        {registerMutation.isPending ? "Registering..." : "Create account"}
+      </Button>
     </form>
   );
 }

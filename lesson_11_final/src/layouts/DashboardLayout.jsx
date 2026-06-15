@@ -4,14 +4,16 @@ import Header from "../components/common/Header";
 
 export default function DashboardLayout() {
   return (
-    <div className="dashboard__layout">
-      <aside className="dashboard__aside">
+    <div className="flex h-screen bg-gray-50 overflow-hidden">
+      <aside className="w-56 shrink-0 bg-white border-r border-border flex flex-col">
         <Sidebar />
       </aside>
-      <main className="dashboard__main">
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <Header />
-        <Outlet />
-      </main>
+        <main className="flex-1 overflow-auto p-6">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }

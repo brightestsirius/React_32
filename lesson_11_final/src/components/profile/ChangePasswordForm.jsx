@@ -1,8 +1,11 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { changePasswordSchema } from "../../schemas/profileSchemas";
 import { useChangePassword } from "../../hooks/useChangePassword";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 
 export default function ChangePasswordForm() {
   const changePasswordMutation = useChangePassword();
@@ -23,52 +26,70 @@ export default function ChangePasswordForm() {
 
   const onSubmit = (data) => {
     changePasswordMutation.mutate(data, {
-      onSuccess: () => {
-        reset();
-      },
+      onSuccess: () => reset(),
     });
   };
 
   return (
-    <form className="auth__form" onSubmit={handleSubmit(onSubmit)}>
-      <h3>Change Password</h3>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <h3 className="text-sm font-semibold">Password</h3>
+      <Separator />
 
-      <label>
-        Current password:{" "}
-        <input type="password" {...register("currentPassword")} />
+      <div className="space-y-1.5">
+        <Label htmlFor="currentPassword">Current password</Label>
+        <div className="flex items-center gap-3">
+          <Input
+            id="currentPassword"
+            type="password"
+            className="flex-1"
+            {...register("currentPassword")}
+            aria-invalid={!!errors.currentPassword}
+          />
+          <Button type="button" variant="link" size="sm" className="text-primary shrink-0 px-0">
+            Change password
+          </Button>
+        </div>
         {errors.currentPassword && (
-          <p className="auth__form--error">{errors.currentPassword.message}</p>
+          <p className="text-xs text-destructive">{errors.currentPassword.message}</p>
         )}
-      </label>
+      </div>
 
-      <label>
-        New password: <input type="password" {...register("newPassword")} />
+      <div className="space-y-1.5">
+        <Label htmlFor="newPassword">New password</Label>
+        <Input
+          id="newPassword"
+          type="password"
+          {...register("newPassword")}
+          aria-invalid={!!errors.newPassword}
+        />
         {errors.newPassword && (
-          <p className="auth__form--error">{errors.newPassword.message}</p>
+          <p className="text-xs text-destructive">{errors.newPassword.message}</p>
         )}
-      </label>
+      </div>
 
-      <label>
-        Confirm password:{" "}
-        <input type="password" {...register("confirmPassword")} />
+      <div className="space-y-1.5">
+        <Label htmlFor="confirmPassword">Confirm password</Label>
+        <Input
+          id="confirmPassword"
+          type="password"
+          {...register("confirmPassword")}
+          aria-invalid={!!errors.confirmPassword}
+        />
         {errors.confirmPassword && (
-          <p className="auth__form--error">{errors.confirmPassword.message}</p>
+          <p className="text-xs text-destructive">{errors.confirmPassword.message}</p>
         )}
-      </label>
+      </div>
 
       {changePasswordMutation.isError && (
-        <p className="auth__form--error">
-          {changePasswordMutation.error.message}
-        </p>
+        <p className="text-xs text-destructive">{changePasswordMutation.error.message}</p>
       )}
-
       {changePasswordMutation.isSuccess && (
-        <p className="auth__form--success">Password changed successfully</p>
+        <p className="text-xs text-green-600">Password changed successfully</p>
       )}
 
-      <button disabled={changePasswordMutation.isPending}>
-        {changePasswordMutation.isPending ? "Changing..." : "Change password"}
-      </button>
+      <Button type="submit" disabled={changePasswordMutation.isPending}>
+        {changePasswordMutation.isPending ? "Changing..." : "Save changes"}
+      </Button>
     </form>
   );
 }
