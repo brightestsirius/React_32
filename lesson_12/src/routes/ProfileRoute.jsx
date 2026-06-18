@@ -3,11 +3,12 @@ import ChangePasswordForm from "../components/profile/ChangePasswordForm";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useAuthStore } from "../store/authStore";
-import { getInitials } from "@/lib/utils";
 
 export default function ProfileRoute() {
   const user = useAuthStore((state) => state.user);
-  const initials = getInitials(user);
+  const initials = user?.name
+    ? user.name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
+    : user?.email?.[0]?.toUpperCase() ?? "U";
 
   return (
     <div className="flex flex-col gap-6 max-w-2xl">
