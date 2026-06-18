@@ -11,7 +11,8 @@
     "shipments": 1520,
     "workingHours": "08:00 - 20:00",
     "description": "Main branch in Kyiv city center.",
-    "monthlyStats": [120, 135, 150, 140, 160, 175]
+    "monthlyStats": [120, 135, 150, 140, 160, 175],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/56/Khreshchatyk.jpg"
   },
   {
     "id": "2",
@@ -25,7 +26,8 @@
     "shipments": 980,
     "workingHours": "24/7",
     "description": "Self-service parcel locker.",
-    "monthlyStats": [70, 80, 85, 90, 100, 110]
+    "monthlyStats": [70, 80, 85, 90, 100, 110],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e3/2008-08-01_Peremohy_Avenue%2C_Kyiv.jpg"
   },
   {
     "id": "3",
@@ -39,7 +41,8 @@
     "shipments": 1320,
     "workingHours": "08:00 - 21:00",
     "description": "Popular branch in downtown Lviv.",
-    "monthlyStats": [110, 125, 130, 140, 150, 160]
+    "monthlyStats": [110, 125, 130, 140, 150, 160],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b5/13_Prospekt_Svobody%2C_Lviv_%2803%29.jpg"
   },
   {
     "id": "4",
@@ -53,7 +56,8 @@
     "shipments": 760,
     "workingHours": "09:00 - 19:00",
     "description": "Small pickup point.",
-    "monthlyStats": [50, 55, 60, 70, 75, 80]
+    "monthlyStats": [50, 55, 60, 70, 75, 80],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/98/Shevchenka_Street%2C_Lviv_%2801%29.jpg"
   },
   {
     "id": "5",
@@ -67,7 +71,8 @@
     "shipments": 1180,
     "workingHours": "08:00 - 20:00",
     "description": "Central Odesa branch.",
-    "monthlyStats": [95, 100, 110, 120, 125, 140]
+    "monthlyStats": [95, 100, 110, 120, 125, 140],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/74/Odessa_city_garden_and_Deribasovskaya_street.jpg"
   },
   {
     "id": "6",
@@ -81,7 +86,8 @@
     "shipments": 820,
     "workingHours": "24/7",
     "description": "Locker near shopping center.",
-    "monthlyStats": [60, 65, 70, 80, 85, 95]
+    "monthlyStats": [60, 65, 70, 80, 85, 95],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Korolyova_Street%2C_Odesa_-_panoramio_%289%29.jpg"
   },
   {
     "id": "7",
@@ -95,7 +101,8 @@
     "shipments": 1420,
     "workingHours": "08:00 - 20:00",
     "description": "Large regional branch.",
-    "monthlyStats": [115, 120, 135, 145, 155, 170]
+    "monthlyStats": [115, 120, 135, 145, 155, 170],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/26/Apartment_%2B_bank_%2B_clothing_store%3B_Dnipro%2C_Ukraine%3B_19.10.19.jpg"
   },
   {
     "id": "8",
@@ -109,7 +116,8 @@
     "shipments": 610,
     "workingHours": "09:00 - 18:00",
     "description": "Pickup point near university.",
-    "monthlyStats": [45, 50, 55, 60, 65, 70]
+    "monthlyStats": [45, 50, 55, 60, 65, 70],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/89/Gagarina_Prospekt1_%28Dnepropetrovsk%29.jpg"
   },
   {
     "id": "9",
@@ -123,7 +131,8 @@
     "shipments": 1250,
     "workingHours": "08:00 - 20:00",
     "description": "Central branch in Kharkiv.",
-    "monthlyStats": [100, 110, 120, 125, 135, 145]
+    "monthlyStats": [100, 110, 120, 125, 135, 145],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/39/Sumska_Street_in_Kharkiv_(1).jpg"
   },
   {
     "id": "10",
@@ -137,6 +146,7 @@
     "shipments": 730,
     "workingHours": "24/7",
     "description": "Locker near metro station.",
-    "monthlyStats": [55, 60, 65, 70, 75, 80]
+    "monthlyStats": [55, 60, 65, 70, 75, 80],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/22/Prospekt_Nauky%2C_Kharkiv_2025_-_01.jpg"
   }
 ]
