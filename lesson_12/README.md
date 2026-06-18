@@ -13,6 +13,7 @@ React 19 + TypeScript + Vite + shadcn/ui + TailwindCSS v4 + React Router v8 + Ta
 | Форми | `react-hook-form` + `zod` |
 | UI | `shadcn/ui` + `radix-ui` + `tailwindcss` v4 |
 | Тести | `vitest` + `@testing-library/react` |
+| Оптимізація | React Compiler |
 
 ---
 
@@ -26,6 +27,10 @@ pnpm dlx shadcn@latest init -t vite
 
 ```bash
 pnpm add axios @tanstack/react-query zustand react-router react-hook-form @hookform/resolvers zod react-error-boundary leaflet react-leaflet recharts @fontsource-variable/geist lucide-react
+```
+
+```bash
+pnpm add -D @rolldown/plugin-babel babel-plugin-react-compiler
 ```
 
 ---
@@ -472,6 +477,57 @@ src/components/posts/
     ├── getPages.test.ts          ← unit тест чистої функції
     └── PostsPagination.test.tsx  ← component тест
 ```
+
+---
+
+## React Compiler
+
+React Compiler — інструмент від команди React, який автоматично мемоізує компоненти і значення під час білду. Він замінює ручне використання `memo`, `useMemo` і `useCallback`.
+
+### Встановлення
+
+```bash
+pnpm add -D @rolldown/plugin-babel babel-plugin-react-compiler
+```
+
+### Конфігурація у `vite.config.ts`
+
+```ts
+import react, { reactCompilerPreset } from "@vitejs/plugin-react"
+import babel from "@rolldown/plugin-babel"
+import { defineConfig } from "vitest/config"
+
+export default defineConfig({
+  plugins: [
+    react(),
+    babel({ presets: [reactCompilerPreset()] }),
+    tailwindcss(),
+  ],
+  // ...
+})
+```
+
+> `defineConfig` імпортується з `vitest/config` — це важливо, якщо в проекті є секція `test`. Імпорт з `vite` не розуміє поле `test` і дасть TypeScript-помилку.
+
+### Що це дає
+
+Без компілятора мемоізацію треба додавати вручну:
+
+```tsx
+const filtered = useMemo(() => posts.filter(fn), [posts])
+const handleClick = useCallback(() => { ... }, [id])
+export default memo(PostCard)
+```
+
+З компілятором — пишемо звичайний код, компілятор сам визначає де потрібна оптимізація:
+
+```tsx
+const filtered = posts.filter(fn)
+const handleClick = () => { ... }
+export default function PostCard() { ... }
+```
+
+Перевірити роботу компілятора можна у React DevTools — оптимізовані компоненти матимуть значок `✨ Memo`.
 
 ---
 
