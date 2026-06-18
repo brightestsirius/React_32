@@ -5,18 +5,12 @@ import LocationsMap from "../components/map/LocationsMap";
 import LocationList from "../components/locations/LocationList";
 import { useFilteredLocations } from "../hooks/useFilteredLocations";
 import { useVisibleLocations } from "../hooks/useVisibleLocations";
-import { MapPin, GitBranch, Package, Boxes } from "lucide-react";
-
 export default function MapRoute() {
   const { data: locations = [], isLoading, isError, error } = useLocations();
   const [bounds, setBounds] = useState(null);
 
   const filteredLocations = useFilteredLocations(locations);
   const visibleLocations = useVisibleLocations(filteredLocations, bounds);
-
-  const branches = locations.filter((l) => l.type === "Branch").length;
-  const lockers = locations.filter((l) => l.type === "Locker").length;
-  const pickups = locations.filter((l) => l.type === "Pickup").length;
 
   if (isLoading) return <p className="text-muted-foreground text-sm">Loading locations...</p>;
   if (isError) return <p className="text-destructive text-sm">{error.message}</p>;

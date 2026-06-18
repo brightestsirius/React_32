@@ -1,4 +1,4 @@
-import SidebarNav from "./SidebarNav";
+import SidebarMenu from "./SidebarMenu";
 import LogoutButton from "../auth/LogoutButton";
 import { MapPin } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
@@ -19,7 +19,7 @@ export default function Sidebar() {
       <Separator />
 
       <div className="flex-1 py-3">
-        <SidebarNav />
+        <SidebarMenu />
       </div>
 
       <Separator />

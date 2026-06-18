@@ -41,8 +41,6 @@ export default function EditProfileForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <h3 className="text-sm font-semibold">Edit Profile</h3>
-
       <div className="space-y-1.5">
         <Label htmlFor="name">Full name</Label>
         <Input id="name" {...register("name")} aria-invalid={!!errors.name} />

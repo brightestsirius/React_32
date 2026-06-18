@@ -9,7 +9,7 @@ const menu = [
   { path: "/dashboard/profile", name: "Profile", icon: User },
 ];
 
-export default function SidebarNav() {
+export default function SidebarMenu() {
   return (
     <nav>
       <ul className="flex flex-col gap-0.5 px-2">

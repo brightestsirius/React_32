@@ -19,8 +19,8 @@ export default function LocationList({ locations }) {
             className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors group"
           >
             <div className="size-10 rounded-lg bg-gray-100 shrink-0 overflow-hidden">
-              {loc.photo ? (
-                <img src={loc.photo} alt={loc.name} className="size-full object-cover" />
+              {loc.image ? (
+                <img src={loc.image} alt={loc.name} className="size-full object-cover" />
               ) : (
                 <div className="size-full flex items-center justify-center">
                   <MapPin className="size-4 text-muted-foreground" />

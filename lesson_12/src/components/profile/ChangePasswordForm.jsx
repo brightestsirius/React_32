@@ -5,7 +5,6 @@ import { useChangePassword } from "../../hooks/useChangePassword";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 
 export default function ChangePasswordForm() {
   const changePasswordMutation = useChangePassword();
@@ -32,20 +31,14 @@ export default function ChangePasswordForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <h3 className="text-sm font-semibold">Password</h3>
-      <Separator />
-
       <div className="space-y-1.5">
         <Label htmlFor="currentPassword">Current password</Label>
-        <div className="flex items-center gap-3">
-          <Input
-            id="currentPassword"
-            type="password"
-            className="flex-1"
-            {...register("currentPassword")}
-            aria-invalid={!!errors.currentPassword}
-          />
-        </div>
+        <Input
+          id="currentPassword"
+          type="password"
+          {...register("currentPassword")}
+          aria-invalid={!!errors.currentPassword}
+        />
         {errors.currentPassword && (
           <p className="text-xs text-destructive">{errors.currentPassword.message}</p>
         )}
