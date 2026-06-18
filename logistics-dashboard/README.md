@@ -2,6 +2,8 @@
 
 A logistics location management dashboard built with React 19. Browse locations on an interactive map, track shipment analytics, manage favourites, and handle user authentication — all in one clean interface.
 
+**Live:** [logdashboard-tau.vercel.app](https://logdashboard-tau.vercel.app)
+
 ---
 
 ## Pages

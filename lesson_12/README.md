@@ -318,6 +318,39 @@ createRoot(document.getElementById("root")!).render(
 
 ---
 
+## Деплой на Vercel
+
+### Підготовка
+
+Створити `vercel.json` у корені проекту — щоб роутинг не ламався при прямому переході на будь-який маршрут:
+
+```json
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+```
+
+Без цього файлу Vercel повертає `404 NOT_FOUND` при переході напряму на `/posts` або `/posts/1` — браузер шукає фізичний файл, якого немає. З ним — будь-який запит повертає `index.html`, React Router далі розбирається сам.
+
+### Підключення до Vercel
+
+1. Запушити проект на GitHub
+2. [vercel.com](https://vercel.com) → Add New Project → вибрати репо
+3. Якщо проект у підпапці монорепо — вказати **Root Directory** (наприклад `lesson_12`)
+4. **Environment Variables** → додати `VITE_API_URL`
+5. Deploy
+
+Після підключення кожен `git push` → автоматичний деплой.
+
+### Перевірка білду локально
+
+```bash
+pnpm build    # збирає dist/
+pnpm preview  # піднімає локальний сервер з dist/
+```
+
+---
+
 ## Підсумкова структура
 
 ```
