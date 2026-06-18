@@ -8,9 +8,9 @@ export default function FavoriteCard({ location }) {
   return (
     <li className="bg-white rounded-xl border border-border overflow-hidden hover:shadow-sm transition-shadow">
       <div className="h-36 bg-gray-100 relative overflow-hidden">
-        {location.photo ? (
+        {location.image ? (
           <img
-            src={location.photo}
+            src={location.image}
             alt={location.name}
             className="w-full h-full object-cover"
           />

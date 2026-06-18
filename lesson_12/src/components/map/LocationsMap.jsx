@@ -7,7 +7,7 @@ export default function LocationsMap({ locations, onBoundsChange }) {
       center={[50.4501, 30.5234]}
       zoom={6}
       style={{
-        height: "500px",
+        height: "100%",
         width: "100%",
       }}
     >

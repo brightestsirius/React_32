@@ -27,7 +27,17 @@ export default function LocationDetailsRoute() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 flex flex-col gap-5">
-          <div className="bg-white rounded-xl border border-border p-6">
+          <div className="bg-white rounded-xl border border-border overflow-hidden">
+            {location.image && (
+              <div className="h-52 overflow-hidden">
+                <img
+                  src={location.image}
+                  alt={location.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+            <div className="p-6">
             <div className="flex items-start justify-between mb-4">
               <div>
                 <h1 className="text-xl font-bold mb-1">{location.name}</h1>
@@ -60,6 +70,7 @@ export default function LocationDetailsRoute() {
                 <p className="text-sm text-muted-foreground">{location.description}</p>
               </div>
             )}
+            </div>
           </div>
 
           <div className="bg-white rounded-xl border border-border p-6">
@@ -67,7 +78,7 @@ export default function LocationDetailsRoute() {
           </div>
         </div>
 
-        <div className="rounded-xl overflow-hidden border border-border h-64 lg:h-auto">
+        <div className="rounded-xl overflow-hidden border border-border h-64 lg:h-auto lg:self-start">
           <LocationMap location={location} />
         </div>
       </div>
