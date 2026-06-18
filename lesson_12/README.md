@@ -659,5 +659,3 @@ Next.js               → SEO-важливі сторінки, публічни�
 GraphQL / Apollo      → коли бекенд надає GraphQL API
 REST + TanStack Query → все інше (більшість проектів)
 ```
-
-Логічна послідовність вивчення: **React → React Router → TanStack Query → Next.js → GraphQL** — кожна технологія вирішує нову проблему поверх попередньої.
